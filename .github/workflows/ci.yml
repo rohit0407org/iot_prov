@@ -37,21 +37,16 @@ jobs:
           channel: "stable"
       - run: flutter clean
       - run: flutter pub get
-      - run: flutter build apk --release --build-dir=output/  # Use custom output directory
+      - run: flutter build apk --release  # This will generate the APK in the build directory
 
   upload_apk:
     name: Upload APK
     runs-on: ubuntu-latest
     needs: [build_apk]
     steps:
-      - name: List output directory contents (Debugging)
-        run: |
-          echo "Listing files in output directory:"
-          ls -R output/  # List files in the custom output directory
-
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v3
         with:
           name: app-release-apk
-          path: output/app-release.apk  # Custom path to the APK in the output directory
+          path: build/app/outputs/flutter-apk/app-release.apk  # The APK will be available here after the build
           retention-days: 10
