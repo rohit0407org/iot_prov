@@ -48,5 +48,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app-release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk  # The APK will be available here after the build
+          path: output/flutter-apk/app-release.apk  # The APK will be available here after the build
           retention-days: 10
