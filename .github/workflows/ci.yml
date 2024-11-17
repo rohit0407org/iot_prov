@@ -84,3 +84,21 @@ jobs:
           name: app-release-ipa
           path: build/ios/iphoneos/app-release.ipa
           retention-days: 10
+
+  upload_apk_and_ipa:
+    name: Upload APK and IPA
+    runs-on: ubuntu-latest
+    needs: [build_appbundle, build-ios]
+    steps:
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 10
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release-ipa
+          path: build/ios/iphoneos/app-release.ipa
+          retention-days: 10
