@@ -61,6 +61,7 @@ jobs:
         run: |
           cd ios
           echo "platform :ios, '13.0'" > Podfile  # Set iOS platform version to 13.0
+          echo "workspace 'Runner.xcworkspace'" >> Podfile  # Ensure workspace is specified
           flutter pub get  # Ensure dependencies are up to date
 
       - name: Set up CocoaPods
